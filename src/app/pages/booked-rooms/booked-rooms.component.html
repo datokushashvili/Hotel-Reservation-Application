@@ -1,0 +1,38 @@
+<div class="container mt-4 d-flex justify-content-between">
+    <div class="table-responsive w-100 text-center">
+        <table class="table table text-nowrap">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-start" scope="col">Customer</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Check in</th>
+                    <th scope="col">Check out</th>
+                    <th scope="col">Total price</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bookedRoom of bookedRooms">
+                    <td class="text-start">Name: {{bookedRoom.customerName}} <br>Phone: {{bookedRoom.customerPhone}}
+                    </td>
+                    <td *ngIf="bookedRoom.isConfirmed" scope="col"><span
+                            class="badge text-bg-secondary p-2">Booked</span></td>
+                    <td>{{ bookedRoom.checkInDate | date: 'MM/dd/yyyy' }}</td>
+                    <td>{{ bookedRoom.checkOutDate | date: 'MM/dd/yyyy' }}</td>
+                    <td>{{bookedRoom.totalPrice}} $</td>
+                    <td><button class="btn btn-danger pt-0 pb-0" (click)="cancelBooking(bookedRoom.id)">Cancel</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="spinner-overlay" *ngIf="isLoading">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div class="overlay" *ngIf="cancelSuccessful">
+    <div class="position-fixed top-50 start-50 translate-middle bg-light p-4 rounded message text-center">
+        <p class="text-center fs-5">Room canceled successfully!</p>
+        <button class="btn btn-primary" (click)="deleteMessage()">Close</button>
+    </div>
+</div>

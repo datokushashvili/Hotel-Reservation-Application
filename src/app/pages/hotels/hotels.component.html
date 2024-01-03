@@ -1,0 +1,43 @@
+<section class="about-hotels container text-center p-4">
+    <h2>Experience Our Carefully Curated Collection of Hotels</h2>
+    <p>Welcome to our carefully curated collection of hotels, each offering a unique blend of luxury, comfort, and
+        unparalleled hospitality. Whether you're seeking a relaxing beachfront retreat, a bustling urban escape, or
+        a tranquil countryside haven, our diverse range of accommodations caters to every traveler's preferences.
+    </p>
+</section>
+<section class="cities container mb-3 mt-3 d-flex gap-2">
+    <button class="btn btn-primary all-cities">All</button>
+    <div class="btn-group" role="group" aria-label="Cities">
+        <button class="btn btn-secondary city" *ngFor="let city of cities" (click)="getHotelsByCity(city)">{{
+            city}}</button>
+    </div>
+</section>
+<section class="hotels container" *ngIf="showAllHotels">
+    <div class="row">
+        <div class="hotel col-lg-4 col-md-4 col-sm-12" *ngFor="let hotel of hotelList">
+            <div>
+                <div class="hotel-img">
+                    <img [src]="hotel.featuredImage" alt="Hotel image">
+                    <a [routerLink]="'info/' + hotel.id">VIEW ROOMS</a>
+                </div>
+            </div>
+            <h3>{{hotel.name}}</h3>
+        </div>
+    </div>
+</section>
+<section class="hotels container" *ngIf="showCityHotels">
+    <div class="row">
+        <div class="hotel col-lg-4 col-md-4 col-sm-12" *ngFor="let hotel of hotelList">
+            <div>
+                <div class="hotel-img">
+                    <img [src]="hotel.featuredImage" alt="Hotel image">
+                    <a [routerLink]="'info/' + hotel.id">VIEW ROOMS</a>
+                </div>
+            </div>
+            <h3>{{hotel.name}}</h3>
+        </div>
+    </div>
+</section>
+<div class="spinner-overlay" *ngIf="isLoading">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>

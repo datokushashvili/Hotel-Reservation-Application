@@ -1,0 +1,34 @@
+<section class="hotel-room-titles" *ngIf="hotel">
+    <h2>WELCOME TO {{hotel.name}}</h2>
+    <img class="container-fluid p-0" [src]="hotel.featuredImage" alt="Hotel image">
+    <h3 class="fs-2">Experience our family-friendly hotel rooms and junior suites</h3>
+</section>
+
+<section class="container hotel-room-description">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 mb-3">
+            <p>Well-designed family-friendly hotel rooms provide a home away from home in Tbilisi, Georgia</p>
+        </div>
+        <div class="col-lg-4 col-md-12 mb-3">
+            <p>Newly renovated rooms offer featherbed mattresses, mini-refrigerators, and other amenities</p>
+        </div>
+        <div class="col-lg-4 col-md-12 mb-3">
+            <p>Additional perks for your Tbilisi hotel stay include an in-room work desk and high-speed Internet</p>
+        </div>
+    </div>
+</section>
+
+<section class="rooms container" *ngIf="hotel && hotel.rooms">
+    <div class="room row">
+        <div class="col-6" *ngFor="let room of hotel.rooms">
+            <div>
+                <img [src]="room.images[0].source" alt="Room image">
+                <a class="p-3 d-block" [routerLink]="'reservation/' + room.id">{{room.name}} <i
+                        class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="spinner-overlay" *ngIf="isLoading">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>

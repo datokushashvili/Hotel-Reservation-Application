@@ -1,0 +1,106 @@
+.carousel {
+    max-width: 800px;
+}
+
+.reservation-form {
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.08);
+
+    h2 {
+
+        &::before,
+        &::after {
+            content: '';
+            height: 2px;
+            width: 40px;
+            display: inline-block;
+            background-color: gray;
+            margin: 0 10px;
+        }
+    }
+
+    .room-title-and-price {
+        border: 1px dashed lightgray;
+        padding: 8px;
+        border-radius: 5px;
+
+        h3,
+        p {
+            margin: 0;
+            text-wrap: nowrap;
+        }
+    }
+
+    input {
+        margin-bottom: 20px;
+    }
+
+    .price {
+        color: rgb(117, 197, 207);
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+.room-details-and-overview {
+
+    .overview {
+        .overview-text {
+            p {
+                padding: 20px;
+
+                img {
+                    float: right;
+                }
+            }
+        }
+
+        button {
+            background: transparent;
+            padding: 10px 20px;
+            color: rgb(117, 197, 207);
+            transition: 300ms;
+            border: 0;
+
+            &:hover {
+                color: black;
+            }
+        }
+    }
+
+    .room-details {
+        i {
+            color: rgb(117, 197, 207);
+            margin-right: 5px;
+        }
+    }
+}
+
+
+/* Styling for the active button */
+.active-button {
+    color: black !important;
+    border-bottom: 1px solid black !important;
+}
+
+
+table tbody tr:nth-child(odd) td {
+    background-color: rgb(247, 251, 252);
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        height: 2px;
+        background-color: rgb(180, 180, 180);
+    }
+}

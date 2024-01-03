@@ -1,0 +1,72 @@
+<div class="room-type-buttons container d-flex gap-4 my-3">
+    <button (click)="showAllRooms(); addActiveClass(0)" [ngClass]="{'activeButton': activeRoom === 0}">All</button>
+    <div class="room-types" *ngFor="let roomType of roomTypes">
+        <button (click)="filterByRoomType(roomType.id); addActiveClass(roomType.id)"
+            [ngClass]="{'activeButton': activeRoom === roomType.id}">{{roomType.name}}</button>
+    </div>
+</div>
+<div class="filterForm container">
+    <button class="btn btn-primary d-block d-md-none mb-3" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseForm" aria-expanded="false" aria-controls="collapseForm">
+        Filter <i class="fa-solid fa-filter"></i>
+    </button>
+    <form [formGroup]="filterForm" class="p-4 my-3 collapse d-md-block" id="collapseForm">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="price" class="form-label">Price From</label>
+                <input type="number" name="price" id="price" min="0" max="1000" formControlName="priceFrom"
+                    class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="priceTo" class="form-label">Price To</label>
+                <input type="number" name="priceTo" id="priceTo" min="0" max="1000" formControlName="priceTo"
+                    class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="roomType" class="form-label">Room Type</label>
+                <select name="roomType" id="roomType" formControlName="roomTypeId" class="form-select">
+                    <option value="">Select Room Type</option>
+                    <option value="1">Single Room</option>
+                    <option value="2">Double Room</option>
+                    <option value="3">Deluxe Room</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="check-in" class="form-label">Check-in</label>
+                <input type="date" id="check-in" name="check-in" formControlName="checkIn" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="check-out" class="form-label">Check-out</label>
+                <input type="date" id="check-out" name="check-out" formControlName="checkOut" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="guestQuantity" class="form-label">Guest</label>
+                <input type="number" id="guestQuantity" name="guestQuantity" formControlName="guestsCount"
+                    class="form-control">
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary me-2" (click)="onSubmit()">Submit</button>
+                <button type="reset" class="btn btn-secondary" (click)="resetForm(); showAllRooms()">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="rooms container">
+    <div class="room row">
+        <div class="col-6" *ngFor="let room of allRooms">
+            <div>
+                <img [src]="room.images[0].source" alt="">
+                <div>
+                    <h3>{{room.name}}</h3>
+                    <!-- h2 must be used -->
+                    <p>price: {{room.pricePerNight}} $</p>
+                    <a [routerLink]="'reservation/' + room.id">View More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spinner-overlay" *ngIf="isLoading">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>

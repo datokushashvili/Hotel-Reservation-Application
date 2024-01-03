@@ -1,0 +1,63 @@
+.hotels {
+
+    .hotel {
+        box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        p{
+            margin: 10px;
+        }
+
+        div {
+            overflow: hidden;
+            .hotel-img {
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: 500ms;
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+                    opacity: 0;
+                    transition: opacity 0.5s;
+                }
+
+                &:hover {
+                    transform: scale(1.2);
+
+                    a {
+                        display: flex;
+                    }
+                    &:before {
+                        opacity: 1;
+                    }
+                }
+
+                img {
+                    width: 100%;
+                }
+
+                a {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    display: none;
+                    color: white;
+                }
+
+            }
+        }
+
+    }
+}

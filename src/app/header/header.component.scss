@@ -1,0 +1,67 @@
+header {
+    padding: 30px 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    transition: 500ms;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    background-color: #0f0f0f;
+    background: rgba(0, 0, 0, 0.7);
+
+    h1 {
+        margin: 0;
+        a {
+            font-size: 25px;
+            color: rgb(216, 152, 51)
+        }
+    }
+
+    a {
+        font-size: 17px;
+        color: rgb(255, 255, 255);
+        transition: 300ms;
+
+        &:hover {
+            color: rgb(175, 175, 175);
+        }
+    }
+    button{
+        i{
+            color: white;
+        }
+    }
+    .navbar-toggler{
+        color: rgb(255, 255, 255);
+        border: 1px solid rgb(255, 255, 255);
+    }
+}
+
+.header-scroll {
+    padding: 10px 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 1px 8px rgb(126, 126, 126);
+
+    a {
+        color: rgb(0, 0, 0);
+
+        &:hover {
+            color: rgb(117, 117, 117);
+        }
+    }
+    button{
+        i{
+            color: #555555;
+        }
+    }
+    .navbar-toggler{
+        color: #555555;
+        border: 1px solid #555555;
+    }
+}
+
+.active {
+    color: rgb(216, 152, 51) !important;
+}

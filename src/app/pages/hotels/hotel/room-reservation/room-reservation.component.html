@@ -1,0 +1,151 @@
+<section class="container d-flex flex-column flex-lg-row justify-content-between gap-4">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"
+        *ngIf="hotelRoomReservation">
+        <div class="carousel-indicators">
+            <button *ngFor="let image of hotelRoomReservation.images; let i = index" type="button"
+                data-bs-target="#carouselExampleAutoplaying" [attr.data-bs-slide-to]="i"
+                [class.active]="i === 0"></button>
+        </div>
+        <div class="carousel-inner">
+            <div *ngFor="let image of hotelRoomReservation.images; let i = index" class="carousel-item"
+                [class.active]="i === 0">
+                <img [src]="image.source" class="d-block w-100" alt="Room image">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="reservation-form d-flex flex-column justify-content-between p-4">
+        <h2 class="d-flex align-items-center">Reservation</h2>
+        <div class="room-title-and-price d-flex align-items-center gap-1 mb-4">
+            <h3>{{ hotelRoomReservation?.name }}</h3>
+            <p class="d-flex gap-1">
+                <span class="price">{{ hotelRoomReservation?.pricePerNight | currency:'USD':'symbol':'1.0' }}</span>
+                - per night
+            </p>
+        </div>
+        <p class="text-danger" *ngIf="inappropriateDates">Please select dates correctly</p>
+        <form [formGroup]="bookForm">
+
+            <div class="form-group">
+                <mat-form-field class="w-100">
+                    <input id="check-in" matInput [matDatepicker]="checkInPicker" [matDatepickerFilter]="dateFilter"
+                        placeholder="Choose check-in date" formControlName="checkIn" [min]="getCurrentDate()"
+                        (dateChange)="compareDates()">
+                    <mat-datepicker-toggle matSuffix [for]="checkInPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #checkInPicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="form-group" *ngIf="checkInValue">
+                <mat-form-field class="w-100">
+                    <input id="check-out" matInput [matDatepicker]="checkOutPicker" [matDatepickerFilter]="dateFilter"
+                        placeholder="Choose check-out date" formControlName="checkOut" [min]="minCheckOutDay"
+                        (dateChange)="compareDates()">
+                    <mat-datepicker-toggle matSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #checkOutPicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <label for="customerName">Customer Name</label>
+                <input type="text" id="customerName" name="customerName" formControlName="customerName"
+                    class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="customerPhone">Customer Tel:Phone</label>
+                <input type="tel" name="customerPhone" id="customerPhone" formControlName="customerPhone"
+                    class="form-control">
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+                <button type="submit" (click)="onSubmit(hotelRoomReservation.id)"
+                    class="btn btn-primary fw-bold px-4 text-nowrap" [disabled]="bookForm.invalid">BOOK NOW</button>
+                <div class="d-inline"
+                    *ngIf="bookForm.value.checkIn && bookForm.value.checkOut && diffDays !== 0 && totalPriceMessage">
+                    <p class="d-inline text-nowrap">Total Price: <span class="price">{{diffDays *
+                            hotelRoomReservation.pricePerNight | currency:'USD':'symbol':'1.0'}}</span></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<section class="room-details-and-overview container d-flex flex-wrap flex-lg-nowrap gap-5 mt-5">
+    <section class="room-details col-lg-6 col-sm-12">
+        <h2 class="text-center">Room Details</h2>
+        <div>
+            <h3>Table overview</h3>
+            <table class="table mt-4 mb-4">
+                <tbody>
+                    <tr>
+                        <td><i class="fa-solid fa-circle-check"></i> Double Bed</td>
+                        <td><i class="fa-solid fa-circle-check"></i> 60 square meters</td>
+                        <td><i class="fa-solid fa-circle-check"></i> Double Bed</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-circle-check"></i> Free Internet</td>
+                        <td><i class="fa-solid fa-circle-check"></i> Beach view</td>
+                        <td><i class="fa-solid fa-circle-check"></i> Free Internet</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-circle-check"></i> Free Newspaper</td>
+                        <td><i class="fa-solid fa-circle-check"></i> 2 persons</td>
+                        <td><i class="fa-solid fa-circle-check"></i> Breakfast included</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-circle-check"></i> Private Balcony</td>
+                        <td><i class="fa-solid fa-circle-check"></i> Flat Screen TV</td>
+                        <td><i class="fa-solid fa-circle-check"></i> Jacuzzi</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula nibh, cursus id euismod non,
+                scelerisque nec nibh. Nam semper, ligula a rhoncus fermentum, libero lacus vulputate felis, id
+                auctor
+                mauris urna quis diam.</p>
+        </div>
+    </section>
+    <section class="overview col-lg-6 col-sm-12">
+        <h2 class="text-center">Overview</h2>
+        <div class="overview-buttons text-center">
+            <button (click)="overviewbutton()" [class.active-button]="overview">Overview</button>
+            <button (click)="facilitiesbutton()" [class.active-button]="facilities">Facilities</button>
+            <button (click)="extrabutton()" [class.active-button]="extra">Extra</button>
+        </div>
+        <div class="overview-text">
+            <p *ngIf="overview">
+                <img src="../../../../../assets/Imgs/restaurant.jpg" alt="Restaurant img">
+                Donec pretium sem non tincidunt iaculis. Nunc at pharetra eros, a
+                varius leo. Mauris id hendrerit justo. Mauris egestas magna vitae nisi ultricies semper. Nam vitae
+                suscipit magna. Nam et felis nulla. Ut nec magna tortor. Nulla dolor sapien, laoreet vel tincidunt
+                non, egestas non justo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quos
+                excepturi harum at repellat doloremque laborum maiores assumenda architecto omnis.
+            </p>
+            <p *ngIf="facilities">Phasellus sodales justo felis, a vestibulum risus mattis vitae. Aliquam vitae
+                varius elit, non facilisis massa. Vestibulum luctus diam mollis gravida bibendum. Aliquam mattis
+                velit dolor, sit amet semper erat auctor vel. Integer auctor in dui ac vehicula. Integer fermentum
+                nunc ut arcu feugiat, nec placerat nunc tincidunt. Pellentesque in massa eu augue placerat cursus
+                sed quis magna.</p>
+            <p *ngIf="extra">Aa vestibulum risus mattis vitae. Aliquam vitae varius elit, non facilisis massa.
+                Vestibulum luctus diam mollis gravida bibendum. Aliquam mattis velit dolor, sit amet semper erat
+                auctor vel. Integer auctor in dui ac vehicula. Integer fermentum nunc ut arcu feugiat, nec placerat
+                nunc tincidunt. Pellentesque in massa eu augue placerat cursus sed quis magna.</p>
+        </div>
+    </section>
+</section>
+<div class="spinner-overlay" *ngIf="isLoading">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>
+
+<div class="overlay" *ngIf="bookSuccessful">
+    <div class="position-fixed top-50 start-50 translate-middle bg-light p-4 rounded message text-center">
+        <p class="text-center fs-5">Room booked successfully!</p>
+        <button class="btn btn-primary" (click)="deleteMessage()">Close</button>
+    </div>
+</div>

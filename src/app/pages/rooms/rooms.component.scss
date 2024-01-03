@@ -1,0 +1,58 @@
+.room-type-buttons {
+    button {
+        border: 0;
+        background: transparent;
+        border-bottom: 3px solid transparent;
+        padding-bottom: 5px;
+        transition: 500ms;
+
+        &:hover {
+            border-bottom: 3px solid rgb(87, 87, 87);
+        }
+    }
+
+    .activeButton {
+        border-bottom: 3px solid rgb(87, 87, 87);
+    }
+}
+
+.filterForm {
+    form {
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.08);
+
+        div {
+            label {
+                font-weight: bold;
+                color: #333;
+            }
+        }
+    }
+}
+
+.room {
+    img {
+        width: 100%;
+    }
+
+    >div {
+        >div {
+            margin: 20px 0;
+            overflow: hidden;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            div{
+                padding: 20px;
+            }
+            a {
+                border-top: 1px solid gray;
+                display: block;
+                text-align: center;
+                padding-top: 10px;
+                text-decoration: underline;
+                color: #000000;
+            }
+        }
+    }
+}

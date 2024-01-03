@@ -1,0 +1,110 @@
+<div class="home-component">
+    <section class="main-Bg">
+        <div class="content-section implementation carousel-demo">
+            <div class="card border-0">
+                <p-carousel [value]="mainBgs" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1"
+                    [circular]="true" [autoplayInterval]="3000" [showIndicators]="false" [showNavigators]="false">
+                    <ng-template let-bgImage pTemplate="item">
+                        <div class="item card border-0">
+                            <img src="{{bgImage.picture}}" class="card-img-top rounded-0 vh-100 w-100"
+                                alt="Hotel image">
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </div>
+        </div>
+        <div class="main-text-content text-center">
+            <h2>ENJOY YOUR WONDERFUL HOLIDAYS WITH A GREAT LUXURY EXPERIENCE!</h2>
+            <p>Most Relaxing Places</p>
+            <a class="btn mb-4" routerLink="/hotels">See Hotels</a>
+        </div>
+    </section>
+
+    <section class="container text-center p-5">
+        <h3 class="p-4">Explore our 5 star hotels in downtown Tbilisi</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta tempora at quod magni vel itaque obcaecati
+            voluptates consectetur, molestias nesciunt qui quo, voluptatem consequuntur illo? Nulla corporis facilis aut
+            quo, molestias dolores, quam nihil adipisci quos autem, ea necessitatibus inventore!</p>
+    </section>
+
+    <section class="rooms-carousel container">
+        <h4 class="p-4">Rooms & Suits</h4>
+        <div class="content-section implementation carousel-demo">
+            <div class="card border-0">
+                <p-carousel [value]="allRooms" styleClass="custom-carousel" [numVisible]="3" [numScroll]="3"
+                    [circular]="false" [autoplayInterval]="0" [responsiveOptions]="responsiveOptionsForRoomCarousel"
+                    [showIndicators]="showIndicators">
+                    <ng-template let-room pTemplate="item">
+                        <div class="item card m-3">
+                            <img src="{{room.images[0].source}}" class="card-img-top" alt="Room image">
+                            <div class="card-body">
+                                <a [routerLink]="'/reservation/' + room.id" class="card-title">{{room.name}} ></a>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </div>
+        </div>
+    </section>
+
+    <section class="usp-section container">
+        <h3 class="p-5 text-center">USP section</h3>
+        <div class="row justify-content-between text">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card d-flex">
+                    <div class="icon">
+                        <i class="fa-solid fa-martini-glass-citrus"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Beverages included</h5>
+                        <p class="card-text">consectetur adipisicing elit. Iusto libero totam asperiores obcaecati odio,
+                            similique beatae blanditiis maxime doloribus natus.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card">
+                    <div class="icon">
+                        <i class="fa-regular fa-credit-card"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Stay First, Pay After!</h5>
+                        <p class="card-text">consectetur adipisicing elit. Iusto libero totam asperiores obcaecati odio,
+                            similique beatae blanditiis maxime doloribus natus..
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card">
+                    <div class="icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">24 Hour Restaurant</h5>
+                        <p class="card-text">consectetur adipisicing elit. Iusto libero totam asperiores obcaecati odio,
+                            similique beatae blanditiis maxime doloribus natus.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card">
+                    <div class="icon">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Spa included!</h5>
+                        <p class="card-text">consectetur adipisicing elit. Iusto libero totam asperiores obcaecati odio,
+                            similique beatae blanditiis maxime doloribus natus.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="spinner-overlay" *ngIf="isLoading">
+        <mat-spinner class="spinner"></mat-spinner>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<header class="container-fluid" [class.header-scroll]=headerScroll>
+    <nav class="navbar navbar-expand-lg container">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1><a routerLink="home">HOTEL BOOKING</a></h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav nav-links w-100 d-flex justify-content-end">
+                    <li class="nav-item">
+                        <a routerLink="/home" routerLinkActive="active" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/rooms" routerLinkActive="active" class="nav-link">Rooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/hotels" routerLinkActive="active" class="nav-link">Hotels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/bookedRoom" routerLinkActive="active" class="nav-link">Booked rooms</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
